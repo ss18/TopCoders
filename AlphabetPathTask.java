@@ -5,8 +5,6 @@
 package javaapplication1;
 
 
-
-
 /**
  *
  * @author semen
@@ -26,12 +24,10 @@ public class AlphabetPathTask {
 }
 class AlphabetPath {
     
-    private class SayNo extends Exception {}
-    
     private class Symbol {
-        private int x_coord;
-        private int y_coord;
-        private char symbol;
+        public final int x_coord;
+        public final int y_coord;
+        public final char symbol;
         
         public Symbol(int x, int y, char c) {
             this.x_coord = x;
@@ -42,9 +38,9 @@ class AlphabetPath {
     
     private Symbol getSymbol(int x, int y, String[] letterMaze) {
         Symbol s = null;
-        if (y < letterMaze.length) {
+        if (y >= 0 && y < letterMaze.length) {
             String row = letterMaze[y];
-            if (x < row.length()) {
+            if (x >= 0 && x < row.length()) {
                 char c = row.charAt(x);
                 s = new Symbol(x, y, c);
             }
@@ -52,7 +48,22 @@ class AlphabetPath {
         return s;
     }
     
-    private Symbol findNextNeighbor(String[] letterMaze) {
+    private Symbol findNextNeighbor(String[] letterMaze, Symbol symbol) {
+        Symbol up = this.getSymbol(symbol.x_coord, symbol.y_coord + 1, letterMaze);
+        Symbol down = this.getSymbol(symbol.x_coord, symbol.y_coord - 1, letterMaze);
+        Symbol right = this.getSymbol(symbol.x_coord + 1, symbol.y_coord, letterMaze);        
+        Symbol left = this.getSymbol(symbol.x_coord - 1, symbol.y_coord, letterMaze);
+        
+        if (up != null && up.symbol == symbol.symbol + 1) {
+            return up;
+        } else if (down != null && down.symbol == symbol.symbol + 1) {
+            return down;
+        } else if (right != null && right.symbol == symbol.symbol + 1) {
+            return right;        
+        } else if (left != null && left.symbol == symbol.symbol + 1) {
+            return left;        
+        }
+        
         return null;
     }
     
@@ -70,8 +81,18 @@ class AlphabetPath {
     }
 
     public String doesItExist(String[] letterMaze) {
-        String t = letterMaze[0];
-        int lol = t.indexOf('A');
-        return "YES";
+        Symbol aSymbol = this.findA(letterMaze);
+        if (aSymbol != null) {
+            Symbol symbol = aSymbol;
+            while (true) {
+                symbol = this.findNextNeighbor(letterMaze, symbol);
+                if (symbol == null) {
+                    break;
+                } else if (symbol.symbol == 'Z') {
+                    return "YES";
+                }
+            }
+        }
+        return "NO";
     }
 }
