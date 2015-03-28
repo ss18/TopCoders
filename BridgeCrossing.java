@@ -25,19 +25,19 @@
  * Each element of times will be between 1 and 100, inclusive.
 
  * Examples
- * Input: { 1, 2, 5, 10 }
+ * Input 1: { 1, 2, 5, 10 }
  * Correct answer: 17
  * The example from the text.
 
- * Input: { 1, 2, 3, 4, 5 }
+ * Input 2: { 1, 2, 3, 4, 5 }
  * Correct answer: 16
  * One solution is: 1 and 2 cross together (2min), 1 goes back (1min), 4 and 5 cross together (5min), 2 goes back (2min), 1 and 3 cross together (3min), 1 goes back (1min), 1 and 2 cross together (2min). This yields a total of 2 + 1 + 5 + 2 + 3 + 1 + 2 = 16 minutes spent.
 
- * Input: { 100 }
+ * Input 3: { 100 }
  * Correct answer: 100
  * Only one person crosses the bridge once.
 
- * Input: { 1, 2, 3, 50, 99, 100 }
+ * Input 4: { 1, 2, 3, 50, 99, 100 }
  * Correct answer: 162
 
  * This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
