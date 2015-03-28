@@ -1,13 +1,90 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package javaapplication1;
+/**
+ * SRM 523 DIV 2, 250 points Problem
+ * Problem Statement
+ * You are given a 2-dimensional matrix of characters represented by the String[] letterMaze. 
+ * The i-th character of the j-th element of letterMaze represents the character at row i and column j. 
+ * Each of the 26 letters from 'A' to 'Z' appears exactly once in letterMaze, the remaining characters are 
+ * periods ('.').
+
+ * An alphabet path is a sequence of 26 elements of the matrix such that:
+ * The first element contains the letter 'A'.
+ * The first element and the second element are (horizontally or vertically) adjacent.
+ * The second element contains the letter 'B'.
+ * The second element and the third element are (horizontally or vertically) adjacent.
+ * The 25-th element and the 26-th element are (horizontally or vertically) adjacent.
+ * The last, 26-th element contains the letter 'Z'.
+
+* Given letterMaze return String "YES" if the alphabet path exists in the matrix and "NO" otherwise.
+
+* Definition
+* Class: AlphabetPath
+* Method: doesItExist
+* Parameters: String[]
+* Returns: String
+* Method signature: String doesItExist(String[] letterMaze)
+* (be sure your method is public)
+
+
+* Limits
+* Time limit (s): 2.000
+* Memory limit (MB): 64
+
+* Notes
+* Formally, elements (x1,y1) and (x2,y2) are horizontally or vertically adjacent 
+* if and only if abs(x1 - x2) + abs(y1 - y2) = 1.
+* 
+* Constraints
+*  - letterMaze will contain between 1 and 50 elements, inclusive.
+*  - Each element of letterMaze will contain between 1 and 50 characters, inclusive.
+*  - All the elements of letterMaze will contain the same number of characters.
+*  - Each element of letterMaze will only contain uppercase letters ('A'-'Z') and periods ('.').
+*  - Each uppercase letter from 'A' to 'Z' will appear exactly once in letterMaze.
+
+* Examples
+* 
+* Input 1: {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"}
+* Correct answer: "YES"
+* Simply go from left to right.
+
+* Input 2: {"ADEHI..Z",
+*         "BCFGJK.Y",
+*         ".PONML.X",
+*         ".QRSTUVW"}
+* Correct answer: "YES"
+
+* Input 3: {"ACBDEFGHIJKLMNOPQRSTUVWXYZ"}
+* Correct answer: "NO"
+
+* Input 4: {"ABC.......",
+*           "...DEFGHIJ",
+*           "TSRQPONMLK",
+*           "UVWXYZ...."}
+* Correct answer: "NO"
+* The cells marked with C and D are not adjacent, it is impossible to make an alphabet path in this case.
+
+* Input 5: {"..............",
+*           "..............",
+*           "..............", 
+*           "...DEFGHIJK...",
+*           "...C......L...",
+*           "...B......M...",
+*           "...A......N...",
+*           "..........O...",
+*           "..ZY..TSRQP...",
+*           "...XWVU.......",
+*           ".............."}
+* Correct answer:: "YES"
+
+* This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved. 
+* 
+* */
+
+package TopCoder;
 
 
 /**
  *
- * @author semen
+ * @author ss18
  */
 public class AlphabetPathTask {
 
