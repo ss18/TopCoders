@@ -65,7 +65,7 @@ public class BridgeCrossing {
      * @param times, array where the elements represent the time each person spends on a crossing the bridge
      * @return best possible time
      */
-    int minTime(int[] times) {
+    public int minTime(int[] times) {
         
         // According to defined Constraints: times will have between 1 and 6 elements, inclusive.
         // So, for one person cross the bridge, it's just a time of the person

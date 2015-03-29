@@ -52,19 +52,73 @@ import java.util.Collections;
  *
  * @author ss18
  */
-public class BridgeCrossingOptimized extends BridgeCrossing {
+public class BridgeCrossingBest {
     
-    @Override
-    protected void goingFromRightToLeft(ArrayList<Integer> left, ArrayList<Integer> right, Integer time, ArrayList<Integer> allResults) {
-        if (left.isEmpty()) {
-            allResults.add(time);
-        } else {
-            Integer min = Collections.min(right);
-            ArrayList<Integer> newLeft = new ArrayList<>(left);
-            ArrayList<Integer> newRight = new ArrayList<>(right);
-            newLeft.add(min);
-            newRight.remove(min);
-            this.goingFromLeftToRight(newLeft, newRight, time + min, allResults);                
+    /**
+     * 
+     * @param times, array where the elements represent the time each person spends on a crossing the bridge
+     * @return best possible time
+     */    
+    public int minTime(int[] times) {
+        
+        if (times.length == 1) {
+            return times[0];
         }
-    }     
+        
+        ArrayList<Integer> array = new ArrayList<>();
+        for (int i = 0; i < times.length; i++) {
+            array.add(times[i]);
+        }
+        Collections.sort(array);
+        
+        return this.minTime(array);
+    }
+    
+    /**
+     * Auxiliary methods, which assumes that times are sorted, and size > 1
+     * @param times, array where the elements represent the time each person spends on a crossing the bridge
+     * @return best possible time
+     */    
+    protected Integer minTime(ArrayList<Integer> times) {    
+        
+        // best time storage
+        Integer result = 0;
+        
+        // Two best(faster) people _0 & _1
+        Integer _0 = times.get(0);
+        Integer _1 = times.get(1);  
+        
+        while(times.size() > 3) {
+            
+            // Two worst people (slowest) (n) and (n-1) elements in array
+            Integer _n = times.get(times.size() - 1);
+            Integer _n_1 = times.get(times.size() - 2);
+            
+            // Idea of each iteration move two slowest cross the bridge
+            times.remove(_n);
+            times.remove(_n_1);
+            
+            // if arithmetic mean of (n-1) and 0 elements in array more than 1 element
+            // than idea 1: two fast people goes first, than 1 comes back and slowest 
+            // people goes together, and 1 comes back
+            if ((_n_1 + _0) > 2*_1) {
+                result += 2*_1 + _0 + _n;
+                
+            // else, it's gonna be true for the rest of the array, so stop while
+            } else {
+                result += _n + _0 + _n_1 + _0;
+                break;
+            }
+        }
+        
+        // Fastest goes with slowest
+        for(Integer s : times) {
+            result += s;
+        }
+        
+        // Fastest comes back, could be -fastest in case of size 2 :)
+        result += times.get(0)*(times.size() - 3);
+        
+        return result;
+    }
 }
