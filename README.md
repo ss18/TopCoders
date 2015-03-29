@@ -8,7 +8,7 @@
 
 <a id="info">Info</a>
 --------------------------------------------------------------
-AlphabetPath.java - SRM 523 DIV 2, 250 points Problem, Time complexity O(n).
-BridgeCrossing.java - SRM 146 DIV 2, 1000 points Problem , Time complexity O(n^(n^3)).
-BridgeCrossingOptimized.java - SRM 146 DIV 2, 1000 points Problem , Time complexity O(n^(n^2)).
-BridgeCrossingBest.java - SRM 146 DIV 2, 1000 points Problem , Time complexity O(n).
+AlphabetPath.java - SRM 523 DIV 2, 250 points Problem, Time complexity O(n). <br>
+BridgeCrossing.java - SRM 146 DIV 2, 1000 points Problem , Time complexity O(n^(n^3)). <br>
+BridgeCrossingOptimized.java - SRM 146 DIV 2, 1000 points Problem , Time complexity O(n^(n^2)). <br>
+BridgeCrossingBest.java - SRM 146 DIV 2, 1000 points Problem , Time complexity O(n). <br>
