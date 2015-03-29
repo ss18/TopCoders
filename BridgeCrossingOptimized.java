@@ -49,11 +49,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
+ * 
  * @author ss18
+ * 
+ * * NOTE: THIS IS BRUTE FORCE but updated. Time complexity O(n^(n^2)) which also slow...
+ * * For O(n) see BridgeCrossingBest
+ * 
+ * The idea behind is exactly the same as BridgeCrossing, but goingFromRightToLeft based on the fact
+ * that going back must always be fastest one.
  */
 public class BridgeCrossingOptimized extends BridgeCrossing {
     
+    
+    /**
+     * Optimized method, no need to iterate through all right, just move fastest one
+     * @param left - people that still at the left side of the bridge (did not cross the bridge)
+     * @param right - people that already at the right side (did cross the bridge already), but may go back with flashlight
+     * @param time - time of this particular order
+     * @param allResults - goes through all recursion stack to store all possible times 
+     */
     @Override
     protected void goingFromRightToLeft(ArrayList<Integer> left, ArrayList<Integer> right, Integer time, ArrayList<Integer> allResults) {
         if (left.isEmpty()) {

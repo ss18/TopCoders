@@ -52,17 +52,19 @@ import java.util.Collections;
  * 
  * @author ss18
  * 
+ * NOTE: THIS IS BRUTE FORCE. Time complexity O(n^(n^3)) which little slow :)
+ * For O(n) see BridgeCrossingBest
+ * 
  * The idea behind. On each iteration state of the algorithm represented by two arrays,
  * left - people which were not crossed the bridge yet, right - people which were crossed the bridge already.
  * If the flashlight on the left side algorithm gonna iterate through all possible pairs of people (from left array) which gonna cross the bridge on this step.
  * If the flashlight on the right side algorithm gonna iterate through all people (from right array) who gonna come back with the flashlight.
  */
-
 public class BridgeCrossing {
     
     /**
      * 
-     * @param times, array where the elements represent the time each person spends on a crossing the bridge
+     * @param times - array where the elements represent the time each person spends on a crossing the bridge
      * @return best possible time
      */
     public int minTime(int[] times) {
@@ -93,10 +95,10 @@ public class BridgeCrossing {
     
     /**
      * 
-     * @param left people that still at the left side of the bridge (did not cross the bridge)
-     * @param right people that already at the right side (did cross the bridge already), but may go back with flashlight
-     * @param time time of this particular order
-     * @param allResults goes through all recursion stack to store all possible times 
+     * @param left - people that still at the left side of the bridge (did not cross the bridge)
+     * @param right - people that already at the right side (did cross the bridge already), but may go back with flashlight
+     * @param time - time of this particular order
+     * @param allResults - goes through all recursion stack to store all possible times 
      */
     protected void goingFromLeftToRight(ArrayList<Integer> left, ArrayList<Integer> right, Integer time, ArrayList<Integer> allResults) {
         for (int i = 1; i < left.size(); i++) {
@@ -114,10 +116,10 @@ public class BridgeCrossing {
     
     /**
      * 
-     * @param left people that still at the left side of the bridge (did not cross the bridge)
-     * @param right people that already at the right side (did cross the bridge already), but may go back with flashlight
-     * @param time time of this particular order
-     * @param allResults goes through all recursion stack to store all possible times 
+     * @param left - people that still at the left side of the bridge (did not cross the bridge)
+     * @param right - people that already at the right side (did cross the bridge already), but may go back with flashlight
+     * @param time - time of this particular order
+     * @param allResults - goes through all recursion stack to store all possible times 
      */
     protected void goingFromRightToLeft(ArrayList<Integer> left, ArrayList<Integer> right, Integer time, ArrayList<Integer> allResults) {
         if (left.isEmpty()) {

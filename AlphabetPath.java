@@ -83,9 +83,26 @@ package TopCoder;
 
 import java.awt.Point;
 
-
+/**
+ * 
+ * @author ss18
+ * 
+ * Time complexity O(n).
+ * 
+ * The idea behind. Find 'A' symbol first. Then check neighbors of 'A' (max 4 neighbors) for 'B'.
+ * Then check neighbors of 'B' for 'C' on so on. Any step could fail. So algorithm return "NO".
+ * If 'Z' reached return "YES". As simple as that. Of course could be optimized a lot. E.g. find any 
+ * symbol first. Not necessary 'A'. Then go from it to 'A' and 'Z' simultaneously. But it 
+ * will be still O(n).
+ * 
+ */
 public class AlphabetPath {
     
+    /**
+     * 
+     * @param letterMaze array of strings with maze itself
+     * @return "YES" if maze satisfied conditions from above. "NO" otherwise.
+     */
     public String doesItExist(String[] letterMaze) {
         Symbol firstElement = this.findA(letterMaze);
         if (firstElement != null) {
@@ -102,6 +119,13 @@ public class AlphabetPath {
         return "NO";
     }    
     
+    /**
+     * Get Symbol from maze
+     * @param x - x coordinate of the symbol in maze 
+     * @param y - y coordinate of the symbol in maze 
+     * @param letterMaze - maze itself
+     * @return Symbol or null if coordinates are not valid
+     */
     protected Symbol getSymbol(int x, int y, String[] letterMaze) {
         Symbol s = null;
         if (y >= 0 && y < letterMaze.length) {
@@ -113,6 +137,13 @@ public class AlphabetPath {
         return s;
     }
     
+    /**
+     * Looking for next symbol, based on current symbol. Next symbol must satisfy conditions
+     * from above.
+     * @param letterMaze - maze itself
+     * @param symbol - current symbol
+     * @return Symbol or null if current symbol has no appropriate neighbor
+     */
     protected Symbol findNextNeighbor(String[] letterMaze, Symbol symbol) {
         Point coordinates = symbol.coordinates;
         Symbol up = this.getSymbol(coordinates.x, coordinates.y + 1, letterMaze);
@@ -132,7 +163,11 @@ public class AlphabetPath {
         
         return null;
     }
-    
+    /**
+     *  Looking for 'A' in maze
+     * @param letterMaze - maze itself
+     * @return Symbol or null if no 'A' in maze
+     */
     protected Symbol findA(String[] letterMaze) {
         Symbol aSymbol = null;
         for (int y = 0; y < letterMaze.length; y++) {
@@ -146,36 +181,67 @@ public class AlphabetPath {
     }
 }
     
+/**
+ * Auxiliary class for representation symbols in maze
+ * @author ss18
+ */
 class Symbol {
+    
     public final char element;
     public Point coordinates;
 
+    /**
+     * Constructor
+     * @param x - x coordinate
+     * @param y - y coordinate
+     * @param c - maze element
+     */
     public Symbol(int x, int y, char c) {
         this.element = c;
         this.coordinates = new Point(x, y);
         
     }
     
+    /**
+     * Constructor for 'A'
+     * @param x - x coordinate
+     * @param y - y coordinate
+     */    
     public Symbol(int x, int y) {
         this(x, y, Symbol.firstElement());
     }
 
+    /**
+     * @return true if this == first element in sequence (see conditions for maze sequence)
+     */
     public boolean isFirstElement() {
         return this.element == Symbol.firstElement();
     }
-
+    
+    /**
+     * @return true if this == last element in sequence (see conditions for maze sequence)
+     */
     public boolean isLastElement() {
         return this.element == Symbol.lastElement();
     }
     
+    /**
+     * @return next sequence element
+     */
     public char nextElement() {
         return (char)(this.element + 1);
     }
 
+    /**
+     * @return first sequence element
+     */
     public static char firstElement() {
         return 'A';
     }
 
+    /**
+     * @return last sequence element
+     */    
     public static char lastElement() {
         return 'Z';
     }

@@ -49,14 +49,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
+ * 
  * @author ss18
+ * 
+ * The idea behind that from right to left goes always fastest one. And from left to right could be 3 options:
+ * 1) goes two slowest
+ * 2) goes two fastest
+ * 3) goes fastest and slowest
+ * Conditions could be defined basted on this beautiful "(_n_1 + _0) > 2*_1", arithmetic mean
+ * read more in method comments.
+ * Time complexity O(n), which is much better than O(n^(n^3)) or O(n^(n^2))
  */
 public class BridgeCrossingBest {
     
     /**
      * 
-     * @param times, array where the elements represent the time each person spends on a crossing the bridge
+     * @param times - array where the elements represent the time each person spends on a crossing the bridge
      * @return best possible time
      */    
     public int minTime(int[] times) {
@@ -76,7 +84,7 @@ public class BridgeCrossingBest {
     
     /**
      * Auxiliary methods, which assumes that times are sorted, and size > 1
-     * @param times, array where the elements represent the time each person spends on a crossing the bridge
+     * @param times - array where the elements represent the time each person spends on a crossing the bridge
      * @return best possible time
      */    
     protected Integer minTime(ArrayList<Integer> times) {    
